@@ -51,7 +51,7 @@ local entity = spawner.Create({
 	},
 	Death = {
 		Type = "Guiding", -- "Curious"
-		Hints = {"You're such a fucking nigger.", "How tf did u to ts nigga vrotato.", "This is why you belong on the farms.", "Such a stupid nigger."},
+		Hints = {"You're such a fucking nigger.", "How tf did u die to ts nigga vrotato.", "This is why you belong on the farms.", "Such a stupid nigger."},
 		Cause = "Nigger Killer"
 	}
 })
