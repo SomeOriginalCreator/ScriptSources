@@ -1,11 +1,11 @@
 --index nodes
-local game = true
+local games = true
 if game.GameId ~= 2440500124 then
   error("This game is not doors vro.")
-  game = false
+  games = false
   return
 end
-if game then
+if games then
 local entityNodes = Instance.new("Folder")
 entityNodes.Parent = workspace
 entityNodes.Name = "entityNodes"
@@ -18,7 +18,7 @@ isHiding.Name = "isHiding"
 isHiding.Value = false
 isHiding.Parent = workspace
 end
-if workspace.CurrentRooms:FindFirstChild("1") and workspace.CurrentRooms:FindFirstChild("1"):FindFirstChild("PathfindNodes") and game then
+if workspace.CurrentRooms:FindFirstChild("1") and workspace.CurrentRooms:FindFirstChild("1"):FindFirstChild("PathfindNodes") and games then
     print("Executed at good time.")
     local firstNodes = workspace.CurrentRooms:FindFirstChild("1"):FindFirstChild("PathfindNodes"):Clone()
     firstNodes.Name = workspace.CurrentRooms:FindFirstChild("1"):FindFirstChild("PathfindNodes").Parent.Name
@@ -26,17 +26,17 @@ if workspace.CurrentRooms:FindFirstChild("1") and workspace.CurrentRooms:FindFir
 end
 print("Indexer started")
 workspace.CurrentRooms.ChildAdded:Connect(function(child)
-    if game == false then return end
+    if games == false then return end
     local nodes = child:WaitForChild("PathfindNodes"):Clone()
     nodes.Name = child.Name
     nodes.Parent = entityNodes
     currentRoom.Value += 1
 end)
 workspace.CurrentRooms.ChildRemoved:Connect(function(child)
-    if game = false then return end
+    if games = false then return end
     entityNodes[child.Name]:Destroy()
 end)
-while wait(0.1) and game do
+while wait(0.1) and games do
     local tempBool = false
     for i, v in workspace:GetDescendants() do
         if v.Name == "HiddenPlayer" and v:IsA("ObjectValue") then
