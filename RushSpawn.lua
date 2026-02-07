@@ -45,6 +45,8 @@ while wait(0.001) do
         if rayResults ~= nil and rayResults.Instance.Parent == game.Players.LocalPlayer.Character then
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            wait(1.2)
+            firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"I nate higgers and nape riggers"}, "Blue")
         end
 	    --print(rayResults)
     end
