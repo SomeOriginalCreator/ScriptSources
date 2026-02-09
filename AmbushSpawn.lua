@@ -10,6 +10,7 @@ local folder = nodeRoom
 local isHiding = false
 local rebounding = false
 local swtOver = false
+local waiting = false
 
 --Entity settings
 
@@ -115,7 +116,10 @@ rs.Heartbeat:Connect(function()
                 if rebound and rebounds >= 1 then
                     wait(reboundWaitTime)
                     rebounding = true
-                    rebounds -= 1
+                    if not waiting then
+						rebounds -= 1
+					end
+					waiting = true
                     for i, v in targetNode.Parent:GetChildren() do
 		                if tonumber(v.Name) == tonumber(targetNode.Name) - 1 then
 		    	            targetNode = v
@@ -143,6 +147,7 @@ rs.Heartbeat:Connect(function()
                     targetNode = ntn
                 end
             else
+				waiting = false
                 folder += 1
 			    targetNode = workspace.entityNodes[tostring(folder)]["1"]
             end
