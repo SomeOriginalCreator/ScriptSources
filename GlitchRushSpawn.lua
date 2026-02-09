@@ -11,6 +11,15 @@ local isHiding = false
 local rebounding = false
 local swtOver = false
 local waiting = false
+local panic
+if game.ReplicatedStorage:FindFirstChild("Panic") then
+    panic = game.ReplicatedStorage:FindFirstChild("Panic")
+else
+    panic = Instance.new("BoolValue")
+    panic.Name = "Panic"
+    panic.Value = false
+    panic.Parent = game.ReplicatedStorage
+end
 
 --Entity settings
 
@@ -25,21 +34,57 @@ local audioCue = "1840927187" --put in an audio id to play when the entity spawn
 --local flickerDuration = 1 --Duration of light flicker
 local entitySpeed = 7 --Speed of entity
 
+--This is for the visual cue (or any cue that isnt listed above) you can write your own code here if you want
+
+function visualCue()
+    return function()
+        --Visual cue code goes in here
+        --ccGoal (Color Correction Goal) = {Brightness, Contrast, Saturation, Color}
+        local ccGoal = {5, 10, 0, Color3.fromRGB(0, 26, 123)}
+        local ccEffect = Instance.new("ColorCorrectionEffect")
+        local ccFade = true
+        local ccFadeTime = 1
+        game.ReplicatedStorage.Panic.Value = true
+        ccEffect.Name = "EntityEffect"
+        local rs = game:GetService("RunService")
+        ccEffect.TintColor = ccGoal[4]
+        ccEffect.Brightness = ccGoal[1]
+        ccEffect.Contrast = ccGoal[2]
+        ccEffect.Saturation = ccGoal[3]
+        ccEffect.Parent = game.Lighting
+        while wait(0.01) and ccEffect.Brightness >= 0.1 or ccEffect.Contrast >= 0.1 do
+            --Fade script
+            if ccEffect.Brightness >= 0.1 then
+                ccEffect.Brightness -= 0.1
+                if ccEffect.Contrast >= 0.1 then
+                    ccEffect.Contrast -= 0.2
+                end
+            else
+                ccEffect.Contrast -= 0.2
+            end
+        end
+    end
+end
+
 --Do the cues
 
-audioCue = "rbxassetid://" .. audioCue
+--Run audio cue in seperate thread so wait times dont interfere
 
-local sound = Instance.new("Sound")
-sound.Parent = workspace
-local soundPart = Instance.new("Part")
-soundPart.Anchored = true
-soundPart.CanCollide = false
-soundPart.Transparency = 1
-soundPart.Position = game.Players.LocalPlayer.Character.Head.CFrame.Position
-sound.SoundId = audioCue
-sound.Looped = false
-wait(0.1)
-sound:Play()
+task.spawn(function()
+    audioCue = "rbxassetid://" .. audioCue
+    local sound = Instance.new("Sound")
+    sound.Parent = workspace
+    sound.SoundId = audioCue
+    sound.Looped = false
+    wait(0.1)
+    sound:Play()
+    wait(sound.TimeLength)
+    sound:Destroy()
+end)
+
+--Runs visual cue as seperate thread (so wait times do not interfere with this then entity code)
+
+task.spawn(visualCue())
 
 --Spawn entity
 
@@ -63,6 +108,9 @@ end
 --Controller
 --while wait(0.001) and swtOver do
 rs.Heartbeat:Connect(function()
+    if panic.Value and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 20 then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
+    end
     if swtOver then
     if not rebounding then
     isHiding = false
@@ -114,6 +162,7 @@ rs.Heartbeat:Connect(function()
 		if targetNode == oldTN and workspace.entityNodes:FindFirstChild(tostring(folder + 1)) then
             if folder == curRoom then
                 if rebound and rebounds >= 1 then
+                    reboundWaitTime = math.random(1, 5)
                     wait(reboundWaitTime)
                     rebounding = true
                     if not waiting then
@@ -138,13 +187,15 @@ rs.Heartbeat:Connect(function()
                         end
                     end
                 else
-                    sound:Destroy()
                     local ntn = Instance.new("Part")
                     ntn.Anchored = true
                     ntn.Parent = workspace
                     ntn.Name = "500"
                     ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
                     targetNode = ntn
+                    game.Lighting["EntityEffect"]:Destroy()
+                    game.ReplicatedStorage.Panic.Value = false
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
                 end
             else
                 waiting = false
@@ -152,13 +203,15 @@ rs.Heartbeat:Connect(function()
 			    targetNode = workspace.entityNodes[tostring(folder)]["1"]
             end
 		elseif targetNode == oldTN then
-            sound:Destroy()
 			local ntn = Instance.new("Part")
             ntn.Anchored = true
             ntn.Parent = workspace
             ntn.Name = "50"
             ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
             targetNode = ntn
+            game.Lighting["EntityEffect"]:Destroy()
+            game.ReplicatedStorage.Panic.Value = false
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
 		end
 	end
     
@@ -207,6 +260,7 @@ rs.Heartbeat:Connect(function()
         end
         if targetNode.Name == "1" then
             if tonumber(targetNode.Parent.Name) == nodeRoom then
+                reboundWaitTime = math.random(1, 5)
                 wait(reboundWaitTime)
                 folder = nodeRoom
                 rebounding = false
