@@ -23,7 +23,7 @@ local reboundWaitTime = 1 --Amount of time the entity will wait before reboundin
 local audioCue = "1840927187" --put in an audio id to play when the entity spawns 0 means no sound will play
 --local flickerLights = false --Will flicker lights when entity spawns
 --local flickerDuration = 1 --Duration of light flicker
-local entitySpeed = 5 --Speed of entity
+local entitySpeed = 7 --Speed of entity
 
 --Do the cues
 
