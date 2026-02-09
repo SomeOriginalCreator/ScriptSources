@@ -16,7 +16,7 @@ local waiting = false
 
 local url = "https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/GlitchAmbush.rbxm" --Url of entity model
 local spawnWaitTime = 1 --Wait time for entity to move after spawning
-local canKill = false
+local canKill = true
 local rebound = true --Entity will rebound if true (like ambush)
 local rebounds = math.random(10, 20) --Amount of rebounds the entity will do
 local reboundWaitTime = 1 --Amount of time the entity will wait before rebounding
