@@ -207,7 +207,6 @@ rs.Heartbeat:Connect(function()
         end
         if targetNode.Name == "1" then
             if tonumber(targetNode.Parent.Name) == nodeRoom then
-                print(rebounds)
                 wait(reboundWaitTime)
                 folder = nodeRoom
                 rebounding = false
