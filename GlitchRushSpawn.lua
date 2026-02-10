@@ -66,6 +66,20 @@ function visualCue()
     end
 end
 
+function endVisualCue()
+    return function()
+        local effect = game.Lighting.EntityEffect
+        local tweenOver = false
+        local ts = game:GetService("TweenService")
+        local Info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, 0, false, 0)
+        ts:Create(effect, Info, {TintColor = Color3.fromRGB(255,255,255)}):Play()
+        while effect.TintColor == Color3.fromRGB(255,255,255) do
+            tweenOver = true
+            effect:Destroy()
+        end
+    end
+end
+
 --Do the cues
 
 --Run audio cue in seperate thread so wait times dont interfere
@@ -193,7 +207,7 @@ rs.Heartbeat:Connect(function()
                     ntn.Name = "500"
                     ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
                     targetNode = ntn
-                    game.Lighting["EntityEffect"]:Destroy()
+                    task.spawn(endVisualCue(game.Lighting["EntityEffect"]))
                     game.ReplicatedStorage.Panic.Value = false
                     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
                 end
@@ -209,7 +223,7 @@ rs.Heartbeat:Connect(function()
             ntn.Name = "50"
             ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
             targetNode = ntn
-            game.Lighting["EntityEffect"]:Destroy()
+            task.spawn(endVisualCue(game.Lighting["EntityEffect"]))
             game.ReplicatedStorage.Panic.Value = false
             game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
 		end
