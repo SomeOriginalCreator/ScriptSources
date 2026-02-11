@@ -122,10 +122,10 @@ end
 --Controller
 --while wait(0.001) and swtOver do
 rs.Heartbeat:Connect(function()
+	if swtOver then
     if panic.Value and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 20 then
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
     end
-    if swtOver then
     if not rebounding then
     isHiding = false
     --print(getDistance(entity.RushNew.CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position))
@@ -220,7 +220,7 @@ rs.Heartbeat:Connect(function()
 			local ntn = Instance.new("Part")
             ntn.Anchored = true
             ntn.Parent = workspace
-            ntn.Name = "50"
+            ntn.Name = "500"
             ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
             targetNode = ntn
             task.spawn(endVisualCue(game.Lighting["EntityEffect"]))
@@ -268,6 +268,7 @@ rs.Heartbeat:Connect(function()
         if targetNode.Name == "500" then
             swtOver = false
             entity:Destroy()
+			targetNode:Destroy()
             --error("This isn't an actual error, this is just to stop the script execution.")
             canKill = false
             return
