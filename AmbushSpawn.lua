@@ -86,8 +86,8 @@ rs.Heartbeat:Connect(function()
         if rayResults ~= nil and rayResults.Instance.Parent == game.Players.LocalPlayer.Character then
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
-            --wait(1.2)
-            --firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"I nate higgers and nape riggers"}, "Blue")
+            wait(1.2)
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"To be fair this is harder than rush.", "But cmon you died to ambush?", "You need help."}, "Blue")
         end
 	    --print(rayResults)
     end
@@ -186,8 +186,8 @@ rs.Heartbeat:Connect(function()
         if rayResults ~= nil and rayResults.Instance.Parent == game.Players.LocalPlayer.Character then
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
-            --wait(1.2)
-            --firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {""}, "Blue")
+            wait(1.2)
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"To be fair this is harder than rush.", "But cmon you died to ambush?", "You need help."}, "Blue")
         end
 	    --print(rayResults)
     end
