@@ -148,8 +148,8 @@ rs.Heartbeat:Connect(function()
         if rayResults ~= nil and rayResults.Instance.Parent == game.Players.LocalPlayer.Character then
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
-            --wait(1.2)
-            --firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"I nate higgers and nape riggers"}, "Blue")
+            wait(1.2)
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"what did you die to this time?", "", "", "", "", "", "", "Good luck next time.", "You can do it."}, "Yellow")
         end
 	    --print(rayResults)
     end
@@ -253,8 +253,8 @@ rs.Heartbeat:Connect(function()
         if rayResults ~= nil and rayResults.Instance.Parent == game.Players.LocalPlayer.Character then
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
-            --wait(1.2)
-            --firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {""}, "Blue")
+            wait(1.2)
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"what did you die to this time?", "", "", "", "", "", "", "Good luck next time.", "You can do it."}, "Yellow")
         end
 	    --print(rayResults)
     end
