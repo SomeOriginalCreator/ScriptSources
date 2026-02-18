@@ -106,7 +106,7 @@ rs.Heartbeat:Connect(function()
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
             wait(1.2)
-			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Skill issue, u gotta be so bad to die to that", "Fuhhin nigga", "You so god damn bad vro"}, "Blue")
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You died to seek vro", "ts one only slightly harder", "are we srs vro 🥀", "I hope to not see u again twin🙏"}, "Blue")
         end
 	    --print(rayResults)
     end
