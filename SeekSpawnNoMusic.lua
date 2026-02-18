@@ -23,7 +23,7 @@ local reboundWaitTime = 1 --Amount of time the entity will wait before reboundin
 local audioCue = "0" --put in an audio id to play when the entity spawns 0 means no sound will play
 --local flickerLights = false --Will flicker lights when entity spawns
 --local flickerDuration = 1 --Duration of light flicker
-local entitySpeed = 0.5 --Speed of entity
+local entitySpeed = 1.5 --Speed of entity
 
 --Do the cues
 
@@ -107,7 +107,7 @@ rs.Heartbeat:Connect(function()
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
             wait(1.2)
-			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Skill issue, u gotta be so bad to die to that", "Fuhhin nigga", "You so god damn bad vro"}, "Blue")
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You died to seek vro", "ts one only slightly harder", "are we srs vro 🥀", "I hope to not see u again twin🙏"}, "Blue")
         end
 	    --print(rayResults)
     end
