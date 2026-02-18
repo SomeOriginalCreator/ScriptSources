@@ -16,7 +16,7 @@ local swtOver = false
 
 local url = "https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/SeekYellow%20.rbxm" --Url of entity model
 local spawnWaitTime = 1 --Wait time for entity to move after spawning
-local canKill = false
+local canKill = true
 local rebound = false --Entity will rebound if true (like ambush)
 local rebounds = 1 --Amount of rebounds the entity will do
 local reboundWaitTime = 1 --Amount of time the entity will wait before rebounding
@@ -93,12 +93,12 @@ rs.Heartbeat:Connect(function()
             end
         end
     end]]
-    if canKill and workspace.isHiding.Value == false and getDistance(entity.Figure.CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
+    if canKill and workspace.isHiding.Value == false and getDistance(entity.Figure.CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 25 then
         --game.Players.LocalPlayer.Character.Humanoid.Health = 0
         print("in range, raycasting")
         local rayOrigin = cPart.Position
         local rayDest = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-	    local rayDir = (rayDest - rayOrigin).Unit * 75
+	    local rayDir = (rayDest - rayOrigin).Unit * 25
 	    local rayParams = RaycastParams.new()
 	    local rayResults = workspace:Raycast(rayOrigin, rayDir, rayParams)
         --print(rayResults)
