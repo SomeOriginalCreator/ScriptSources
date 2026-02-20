@@ -25,14 +25,15 @@ spawner.changeSettings("https://github.com/SomeOriginalCreator/ScriptSources/raw
                 ccEffect.Contrast -= 0.2
             end
         end
-		local effect = game.Lighting.EntityEffect
-        local tweenOver = false
-        local ts = game:GetService("TweenService")
-        local Info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, 0, false, 0)
-        ts:Create(effect, Info, {TintColor = Color3.fromRGB(255,255,255)}):Play()
-        while effect.TintColor == Color3.fromRGB(255,255,255) do
-            tweenOver = true
-            effect:Destroy()
-        end
+end, function()
+	local effect = game.Lighting.EntityEffect
+    local tweenOver = false
+    local ts = game:GetService("TweenService")
+    local Info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, 0, false, 0)
+    ts:Create(effect, Info, {TintColor = Color3.fromRGB(255,255,255)}):Play()
+    while effect.TintColor == Color3.fromRGB(255,255,255) do
+        tweenOver = true
+        effect:Destroy()
+    end
 end)
 spawner.spawn()
