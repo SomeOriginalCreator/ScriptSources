@@ -15,6 +15,7 @@ local entity
 local cPart
 local sound
 local soundPart
+local customPartName = "RushNew"
 
 --Entity settings
 
@@ -49,6 +50,9 @@ function spawner.changeSettings(Url, SpawnWaitTime, CanKill, Rebound, Rebounds, 
 	onSpawn = OnSpawn
 	onEnd = OnEnd
 end
+function spawner.changeMainPartName(pName)
+	customPartName = pName
+end
 
 
 --Do the cues
@@ -61,9 +65,9 @@ function spawner.spawn()
 --Spawn entity
 
 	entity = LoadCustomInstance(url)
-	entity.RushNew.CFrame = CFrame.new(workspace.CurrentRooms[tostring(spawnRoom)].Door.Door.CFrame.Position)
+	entity[customPartName].CFrame = CFrame.new(workspace.CurrentRooms[tostring(spawnRoom)].Door.Door.CFrame.Position)
 	entity.Parent = workspace
-	cPart = entity.RushNew
+	cPart = entity[customPartName]
 --Do audio cue
 	
 	sound = Instance.new("Sound")
@@ -110,7 +114,7 @@ rs.Heartbeat:Connect(function()
             end
         end
     end]]
-    if canKill and workspace.isHiding.Value == false and getDistance(entity.RushNew.CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
+    if canKill and workspace.isHiding.Value == false and getDistance(entity[customPartName].CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
         --game.Players.LocalPlayer.Character.Humanoid.Health = 0
         print("in range, raycasting")
         local rayOrigin = cPart.Position
@@ -208,7 +212,7 @@ rs.Heartbeat:Connect(function()
             end
         end
     end]]
-    if canKill and workspace.isHiding.Value == false and getDistance(entity.RushNew.CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
+    if canKill and workspace.isHiding.Value == false and getDistance(entity[customPartName].CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
         --game.Players.LocalPlayer.Character.Humanoid.Health = 0
         print("in range, raycasting")
         local rayOrigin = cPart.Position
