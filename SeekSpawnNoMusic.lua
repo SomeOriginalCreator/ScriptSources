@@ -3,7 +3,7 @@ local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeO
 spawner.changeSettings(
 	"https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/SeekYellow%20.rbxm", --EntityModelUrl
 	1, --Spawn wait time
-	false, --Can kill
+	true, --Can kill
 	false,--Will rebound
 	2, --Amount of rebounds
 	1, --Rebound wait time
