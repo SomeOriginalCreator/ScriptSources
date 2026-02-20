@@ -88,7 +88,9 @@ function spawner.spawn()
 	wait(spawnWaitTime)
 	swtOver = true
 end
-
+function spawner.entityModel()
+	return entity
+end
 --Functions
 function addY(vect, add)
 	local newvec = Vector3.new(vect.x, vect.y + add, vect.z)
