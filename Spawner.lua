@@ -28,11 +28,14 @@ local audioCue = "0" --put in an audio id to play when the entity spawns 0 means
 local flickerLights = false --Will flicker lights when entity spawns
 local flickerDuration = 1 --Duration of light flicker
 local entitySpeed = 5 --Speed of entity
-local customCue = function()
+local onSpawn = function()
+	--This will be overwritten
+end
+local onEnd = function()
 	--This will be overwritten
 end
 
-function spawner.changeSettings(Url, SpawnWaitTime, CanKill, Rebound, Rebounds, ReboundWaitTime, AudioCue, EntitySpeed, FlickerLights, FlickerDuration, CustomCue)
+function spawner.changeSettings(Url, SpawnWaitTime, CanKill, Rebound, Rebounds, ReboundWaitTime, AudioCue, EntitySpeed, FlickerLights, FlickerDuration, OnSpawn, OnEnd)
 	url = Url
 	spawnWaitTime = SpawnWaitTime
 	canKill = CanKill
@@ -43,7 +46,8 @@ function spawner.changeSettings(Url, SpawnWaitTime, CanKill, Rebound, Rebounds, 
 	entitySpeed = EntitySpeed
 	flickerLights = FlickerLights
 	flickerDuration = FlickerDuration
-	customCue = CustomCue
+	onSpawn = OnSpawn
+	onEnd = OnEnd
 end
 
 
@@ -52,6 +56,16 @@ end
 function spawner.spawn()
 	audioCue = "rbxassetid://" .. audioCue
 
+	
+
+--Spawn entity
+
+	entity = LoadCustomInstance(url)
+	entity.RushNew.CFrame = CFrame.new(workspace.CurrentRooms[tostring(spawnRoom)].Door.Door.CFrame.Position)
+	entity.Parent = workspace
+	cPart = entity.RushNew
+--Do audio cue
+	
 	sound = Instance.new("Sound")
 	sound.Parent = workspace
 	soundPart = Instance.new("Part")
@@ -63,14 +77,8 @@ function spawner.spawn()
 	sound.Looped = false
 	wait(0.1)
 	sound:Play()
-
---Spawn entity
-
-	entity = LoadCustomInstance(url)
-	entity.RushNew.CFrame = CFrame.new(workspace.CurrentRooms[tostring(spawnRoom)].Door.Door.CFrame.Position)
-	entity.Parent = workspace
-	cPart = entity.RushNew
-
+	task.spawn(onSpawn)
+	
 --Start entity
 
 	wait(spawnWaitTime)
@@ -170,6 +178,7 @@ rs.Heartbeat:Connect(function()
                     ntn.Name = "500"
                     ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
                     targetNode = ntn
+					task.spawn(onEnd)
                 end
             else
                 folder += 1
@@ -180,9 +189,10 @@ rs.Heartbeat:Connect(function()
 			local ntn = Instance.new("Part")
             ntn.Anchored = true
             ntn.Parent = workspace
-            ntn.Name = "50"
+            ntn.Name = "500"
             ntn.CFrame = CFrame.new(addY(targetNode.CFrame.Position, -300))
             targetNode = ntn
+			task.spawn(onEnd)
 		end
 	end
     
