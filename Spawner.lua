@@ -68,6 +68,7 @@ function spawner.spawn()
 	entity[customPartName].CFrame = CFrame.new(workspace.CurrentRooms[tostring(spawnRoom)].Door.Door.CFrame.Position)
 	entity.Parent = workspace
 	cPart = entity[customPartName]
+	task.spawn(onSpawn)
 --Do audio cue
 	
 	sound = Instance.new("Sound")
@@ -81,7 +82,6 @@ function spawner.spawn()
 	sound.Looped = false
 	wait(0.1)
 	sound:Play()
-	task.spawn(onSpawn)
 	
 --Start entity
 
