@@ -17,6 +17,7 @@ local cPart
 local sound
 local soundPart
 local customPartName = "RushNew"
+local guidingInfo = {game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Skill issue, u gotta be so bad to die to that", "67", "You so god damn bad vro"}, "Blue"}
 
 --Entity settings
 
@@ -51,10 +52,15 @@ function spawner.changeSettings(Url, SpawnWaitTime, CanKill, Rebound, Rebounds, 
 	onSpawn = OnSpawn
 	onEnd = OnEnd
 end
+
 function spawner.changeMainPartName(pName)
 	customPartName = pName
 end
 
+function spawner.changeGuidingLight(text, type)
+	guidingInfo[2] = text
+	guidingInfo[3] = type
+end
 
 --Do the cues
 
@@ -133,7 +139,7 @@ rs.Heartbeat:Connect(function()
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
             wait(1.2)
-			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Skill issue, u gotta be so bad to die to that", "Fuhhin nigga", "You so god damn bad vro"}, "Blue")
+			firesignal(unpack(guidingInfo))
         end
 	    --print(rayResults)
     end
@@ -231,7 +237,7 @@ rs.Heartbeat:Connect(function()
             print("killing")
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
             wait(1.2)
-			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Skill issue, u gotta be so bad to die to that", "Fuhhin nigga", "You so god damn bad vro"}, "Blue")
+			firesignal(unpack(guidingInfo))
         end
 	    --print(rayResults)
     end
