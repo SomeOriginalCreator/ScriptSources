@@ -1,6 +1,7 @@
 local spawner = {}
 --Initiate
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
+local moduleEvents = require(game.ReplicatedStorage.ModulesClient.Module_Events)
 local curRoom = workspace.RoomNum.Value
 local spawnRoom = curRoom - 5
 local nodeRoom = spawnRoom + 1
@@ -82,6 +83,9 @@ function spawner.spawn()
 	sound.Looped = false
 	wait(0.1)
 	sound:Play()
+	if flickerLights then
+		moduleEvents.flicker(workspace.RoomNum.Value, flickerDuration)
+	end
 	
 --Start entity
 
