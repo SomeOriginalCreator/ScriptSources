@@ -201,6 +201,7 @@ rs.Heartbeat:Connect(function()
 					task.spawn(onEnd)
                 end
             else
+				waiting = false
                 folder += 1
 			    targetNode = workspace.entityNodes[tostring(folder)]["1"]
             end
