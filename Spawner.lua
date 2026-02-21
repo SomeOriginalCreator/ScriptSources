@@ -129,7 +129,7 @@ rs.Heartbeat:Connect(function()
     end]]
     if canKill and workspace.isHiding.Value == false and getDistance(entity[customPartName].CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
         --game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        print("in range, raycasting")
+        --print("in range, raycasting")
         local rayOrigin = cPart.Position
         local rayDest = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 	    local rayDir = (rayDest - rayOrigin).Unit * 75
@@ -231,7 +231,7 @@ rs.Heartbeat:Connect(function()
     end]]
     if canKill and workspace.isHiding.Value == false and getDistance(entity[customPartName].CFrame.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position) <= 75 then
         --game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        print("in range, raycasting")
+        --print("in range, raycasting")
         local rayOrigin = cPart.Position
         local rayDest = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 	    local rayDir = (rayDest - rayOrigin).Unit * 75
