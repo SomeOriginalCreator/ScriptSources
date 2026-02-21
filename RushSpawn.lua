@@ -1,5 +1,5 @@
 local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeOriginalCreator/ScriptSources/refs/heads/main/Spawner.lua"))()
-spawner.changeSettings("https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/Ruh.rbxm", 1, true, flase, 1, 1, "0", 5, true, 1, function()
+spawner.changeSettings("https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/Ruh.rbxm", 1, true, false, 1, 1, "0", 5, true, 1, function()
 
 end, function()
 
