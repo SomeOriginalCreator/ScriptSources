@@ -1,5 +1,5 @@
 local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeOriginalCreator/ScriptSources/refs/heads/main/Spawner.lua"))()
-spawner.changeSettings("https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/GlitchRush.rbxm", 1, true, true, math.random(5, 10), 1, "1840927187", 7, true, 1, function()
+spawner.changeSettings("https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/GlitchRush.rbxm", 1, true, true, math.random(5, 10), 1, "1840927187", 7, false, 1, function()
 	--Visual cue code goes in here
         --ccGoal (Color Correction Goal) = {Brightness, Contrast, Saturation, Color}
         local ccGoal = {5, 10, 0, Color3.fromRGB(0, 26, 123)}
