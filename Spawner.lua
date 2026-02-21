@@ -167,11 +167,12 @@ rs.Heartbeat:Connect(function()
 		if targetNode == oldTN and workspace.entityNodes:FindFirstChild(tostring(folder + 1)) then
             if folder == curRoom then
                 if rebound and rebounds >= 1 then
-                    wait(reboundWaitTime)
-                    rebounding = true
-                    if not waiting then
+					if not waiting then
 						rebounds -= 1
 					end
+					waiting = true
+                    wait(reboundWaitTime)
+                    rebounding = true
                     for i, v in targetNode.Parent:GetChildren() do
 		                if tonumber(v.Name) == tonumber(targetNode.Name) - 1 then
 		    	            targetNode = v
