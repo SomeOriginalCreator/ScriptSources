@@ -12,6 +12,7 @@ local folder = nodeRoom
 local isHiding = false
 local rebounding = false
 local swtOver = false
+local waiting = false
 local entity
 local cPart
 local sound
@@ -168,7 +169,9 @@ rs.Heartbeat:Connect(function()
                 if rebound and rebounds >= 1 then
                     wait(reboundWaitTime)
                     rebounding = true
-                    rebounds -= 1
+                    if not waiting then
+						rebounds -= 1
+					end
                     for i, v in targetNode.Parent:GetChildren() do
 		                if tonumber(v.Name) == tonumber(targetNode.Name) - 1 then
 		    	            targetNode = v
