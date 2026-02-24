@@ -1,8 +1,8 @@
-local uis = game:GetService("UserInputService")
+--local uis = game:GetService("UserInputService")
 local dueToA90 = false
 print("executed")
-uis.InputBegan:Connect(function(inp)
-	if inp.KeyCode == Enum.KeyCode.Delete then
+--uis.InputBegan:Connect(function(inp)
+	--if inp.KeyCode == Enum.KeyCode.Delete then
 		local Damage = 30
 		local A90Event = game.ReplicatedStorage.RemotesFolder.A90
 		firesignal(game.ReplicatedStorage.RemotesFolder.A90.OnClientEvent)
@@ -37,8 +37,8 @@ uis.InputBegan:Connect(function(inp)
 			wait(1)
 			ccEffect:Destroy()
 		end
-	end
-end)
+	--end
+--end)
 game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 	if dueToA90 then
 		wait(1.2)
