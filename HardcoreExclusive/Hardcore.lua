@@ -1,4 +1,6 @@
+print("started")
 loadstring(game:HttpGet("https://github.com/RegularVynixu/Utilities/raw/refs/heads/main/Functions.lua"))()
+print("loaded utils")
 local isDoors = false
 local isHotel = false
 local hardcoreStarted = false
@@ -48,7 +50,10 @@ end]]
 if game.GameId == 2440500124 then
 	isDoors = true
 	if not workspace:FindFirstChild("entityNodes") then
-		
+		print("indexer not started")
+		print("starting...")
+		loadstring(game:HttpGet("https://github.com/SomeOriginalCreator/ScriptSources/raw/refs/heads/main/DoorsEntityNodeIndexer.lua"))()
+		print("started indexer")
 	end
 	if game.PlaceId == 6839171747 then
 		isHotel = true
